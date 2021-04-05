@@ -41,5 +41,16 @@ class ClinicCalendarTest {
 		assertTrue(calendar.hasAppointment(LocalDate.of(1992, 9, 22)));
 
 	}
+	
+	@Test
+	void getTodaysAppointmentsTest() {
+		ClinicCalendar calendar = new ClinicCalendar(LocalDate.now());
+		calendar.addAppointment("test1", "test1", "haresh", "today 08:00 AM");
+		calendar.addAppointment("test2", "test2", "sanket", "09/22/1992 12:00 AM");
+		calendar.addAppointment("test3", "test3", "akash", "today 06:00 AM");
+		
+		assertEquals(2, calendar.getTodaysAppointments().size());
+		
+	}
 
 }

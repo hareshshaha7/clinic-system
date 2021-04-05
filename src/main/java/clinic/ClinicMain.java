@@ -32,6 +32,7 @@ public class ClinicMain {
 		System.out.println("\n\n Please select an option: ");
 		System.out.println(" 1. Enter a Patient Appointment ");
 		System.out.println(" 2. View All Appointments ");
+		System.out.println(" 3. View Today's Appointments ");
 		System.out.println(" X. Exit System");
 		System.out.println(" Option: ");
 		String option = sc.next();
@@ -43,6 +44,10 @@ public class ClinicMain {
 
 		case "2":
 			performAllAppointments();
+			return option;
+
+		case "3":
+			performTodaysAppointments();
 			return option;
 
 		default:
@@ -70,11 +75,11 @@ public class ClinicMain {
 
 		try {
 			calendar.addAppointment(firstName, lastName, doc, when);
+			System.out.println(" Patient entered successfully! \n\n");
+			
 		} catch (Throwable t) {
 			System.err.println(" Error: " + t.getMessage());
 		}
-
-		System.out.println(" Patient entered successfully! \n\n");
 	}
 
 	private static void performAllAppointments() {
@@ -82,6 +87,14 @@ public class ClinicMain {
 		for (PatientAppointment appointment : calendar.getAppointments()) {
 			System.out.println(appointment);
 		}
+	}
+
+	private static void performTodaysAppointments() {
+		System.out.println("\n\n Today's appointments in the system: ");
+		for (PatientAppointment appointment : calendar.getTodaysAppointments()) {
+			System.out.println(appointment);
+		}
+		
 	}
 
 }
