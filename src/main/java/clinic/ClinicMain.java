@@ -1,5 +1,6 @@
 package clinic;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 /**
@@ -15,7 +16,7 @@ public class ClinicMain {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		calendar = new ClinicCalendar();
+		calendar = new ClinicCalendar(LocalDate.now());
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Welcome to the Patient Intake Computer System!\n");
 		String lastOption = "";

@@ -2,6 +2,7 @@ package clinic;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -16,7 +17,7 @@ class ClinicCalendarTest {
 
 	@Test
 	void AllowEntryOfAnAppointment() {
-		ClinicCalendar calendar = new ClinicCalendar();
+		ClinicCalendar calendar = new ClinicCalendar(LocalDate.now());
 		calendar.addAppointment("test", "test", "haresh", "09/22/1992 08:00 AM");
 
 		List<PatientAppointment> appointments = calendar.getAppointments();
@@ -29,6 +30,16 @@ class ClinicCalendarTest {
 		assertSame(Doctor.haresh, appointment.getDoctor());
 		assertEquals("9/22/1992 8:00 AM",
 				appointment.getAppointmenDateTime().format(DateTimeFormatter.ofPattern("M/d/yyyy h:mm a")));
+	}
+
+	@Test
+	void hasAppointmentTest() {
+		ClinicCalendar calendar = new ClinicCalendar(LocalDate.now());
+		assertFalse(calendar.hasAppointment(LocalDate.of(1992, 9, 22)));
+
+		calendar.addAppointment("test", "test", "haresh", "09/22/1992 08:00 AM");
+		assertTrue(calendar.hasAppointment(LocalDate.of(1992, 9, 22)));
+
 	}
 
 }
