@@ -1,6 +1,7 @@
 package clinic;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * @author Haresh Shaha
@@ -8,30 +9,30 @@ import java.time.LocalDateTime;
  *
  */
 public class PatientAppointment {
-	private String patientFisrtName;
+	private String patientFirstName;
 	private String patientLastName;
 	private LocalDateTime appointmenDateTime;
 	private Doctor doctor;
 
 	/**
-	 * @param patientFisrtName
+	 * @param patientFirstName
 	 * @param patientLastName
 	 * @param appointmenDateTime
 	 * @param doctor
 	 */
-	public PatientAppointment(String patientFisrtName, String patientLastName, LocalDateTime appointmenDateTime,
+	public PatientAppointment(String patientFirstName, String patientLastName, LocalDateTime appointmenDateTime,
 			Doctor doctor) {
-		this.patientFisrtName = patientFisrtName;
+		this.patientFirstName = patientFirstName;
 		this.patientLastName = patientLastName;
 		this.appointmenDateTime = appointmenDateTime;
 		this.doctor = doctor;
 	}
 
 	/**
-	 * @return the patientFisrtName
+	 * @return the patientFirstName
 	 */
-	public String getPatientFisrtName() {
-		return this.patientFisrtName;
+	public String getPatientFirstName() {
+		return this.patientFirstName;
 	}
 
 	/**
@@ -53,6 +54,13 @@ public class PatientAppointment {
 	 */
 	public Doctor getDoctor() {
 		return this.doctor;
+	}
+
+	@Override
+	public String toString() {
+		return "PatientAppointment [" + patientFirstName + " " + patientLastName + ", on "
+				+ DateTimeFormatter.ofPattern("M/d/yyyy h:mm a").format(appointmenDateTime) + ", with doctor "
+				+ doctor.getName() + "]";
 	}
 
 }
