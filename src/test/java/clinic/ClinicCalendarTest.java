@@ -19,24 +19,24 @@ import org.junit.jupiter.api.Test;
  */
 class ClinicCalendarTest {
 
-	private static ClinicCalendar calendar;
+	private ClinicCalendar calendar;
 
 	@BeforeAll
 	static void SetUpBeforeAll() {
 		System.out.println(" Setting up before all ");
-
-		calendar = new ClinicCalendar(LocalDate.now());
 	}
 
 	@BeforeEach
 	void SetUpBeforeEach() {
 		System.out.println("\n Setting up before each ");
+
+		calendar = new ClinicCalendar(LocalDate.now());
 	}
 
 	@Test
 	void AllowEntryOfAnAppointment() {
 		System.out.println(" Test basic appointment flow ");
-		
+
 		calendar.addAppointment("test", "test", "haresh", "09/22/1992 08:00 AM");
 
 		List<PatientAppointment> appointments = calendar.getAppointments();
@@ -54,7 +54,7 @@ class ClinicCalendarTest {
 	@Test
 	void hasAppointmentTest() {
 		System.out.println(" Test has appointment ");
-		
+
 		assertFalse(calendar.hasAppointment(LocalDate.of(1992, 9, 22)));
 
 		calendar.addAppointment("test", "test", "haresh", "09/22/1992 08:00 AM");
